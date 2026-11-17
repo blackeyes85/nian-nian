@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#082a2e"><meta name="description" content="一念一记。属于自己的念诵计数与日常记录。">
+  <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="念念">
+  <link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="./icon-192.png">
+  <link rel="stylesheet" href="./styles.css"><link rel="stylesheet" href="./light-theme.css?v=opacity-1"><title>念念 · 念诵记录</title>
+</head>
+<body>
+  <svg class="symbol-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="lotus" viewBox="0 0 48 48"><path d="M24 36C11 33 9 21 12 14c8 1 12 8 12 18M24 36c13-3 15-15 12-22-8 1-12 8-12 18M24 30c-8-8-7-16 0-23 7 7 8 15 0 23ZM23 37C10 40 5 33 4 26c7-1 15 3 19 11Zm2 0c13 3 18-4 19-11-7-1-15 3-19 11Z"/></symbol>
+    <symbol id="home" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/></symbol>
+    <symbol id="book" viewBox="0 0 24 24"><path d="M5 4h12a2 2 0 0 1 2 2v14H7a3 3 0 0 1-3-3V5a1 1 0 0 1 1-1Zm0 12h14M8 8h7M8 11h5"/></symbol>
+    <symbol id="settings" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="16" cy="17" r="3"/></symbol>
+    <symbol id="plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="undo" viewBox="0 0 24 24"><path d="m9 5-5 5 5 5M4 10h10a6 6 0 0 1 0 12"/></symbol>
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+    <symbol id="download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+    <symbol id="check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  </svg>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#count"><span class="brand-mark"><svg><use href="#lotus"/></svg></span><span>念念<small>一念一记 · 日常功课</small></span></a>
+      <nav class="desktop-nav" aria-label="主导航">
+        <button data-page="count" class="active"><svg><use href="#home"/></svg>今日念诵<span>01</span></button>
+        <button data-page="history"><svg><use href="#book"/></svg>念诵记录<span>02</span></button>
+        <button data-page="settings"><svg><use href="#settings"/></svg>我的设置<span>03</span></button>
+      </nav>
+      <div class="sidebar-note"><span class="vertical-line"></span><p>一念清净<br>一念安然</p><small>莲开有时，静待花开。</small></div>
+      <div class="local-note"><span class="status-dot"></span>记录仅保存在当前设备</div>
+    </aside>
+    <main>
+      <header class="topbar"><div class="mobile-brand"><svg><use href="#lotus"/></svg><strong>念念</strong></div><span class="eyebrow desktop-only">一卷经文 · 一寸光阴</span><span id="today-label"></span></header>
+      <div id="storage-alert" class="alert" role="alert" hidden></div>
+      <section id="page-count" class="page">
+        <div class="page-heading"><div><div class="heading-kicker"><span class="seal" aria-hidden="true">静</span><div class="eyebrow">朝暮之间 · 一念清净</div></div><h1>静心一念，<span>日日相续。</span></h1><p>一盏心灯，一卷经文，安住此刻。</p></div><button class="button secondary desktop-only" data-action="manual"><svg><use href="#plus"/></svg>补录念诵</button></div>
+        <div class="practice-grid">
+          <div class="counter-card">
+            <div class="card-top"><div class="project-picker">
+              <span class="field-caption" id="practice-kind-label">佛号念诵</span>
+              <button id="project-select" class="project-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="practice-menu" aria-label="选择念诵功课"><span id="selected-project-name">日常念诵</span><svg aria-hidden="true"><use href="#arrow"/></svg></button>
+              <div id="practice-menu" class="practice-menu" hidden>
+                <div class="practice-menu-header"><strong>选择念诵功课</strong><button id="close-practice-menu" type="button" aria-label="关闭功课菜单">×</button></div>
+                <div class="practice-categories" aria-label="功课分类"><button type="button" data-practice-kind="chant" aria-pressed="true">佛号</button><button type="button" data-practice-kind="sutra" aria-pressed="false">经文</button><button type="button" data-practice-kind="custom" aria-pressed="false">自定义</button></div>
+                <p id="practice-category-help" class="practice-category-help"></p>
+                <div id="practice-options" class="practice-options" role="listbox" aria-label="念诵功课"></div>
+                <button id="new-practice" class="new-practice" type="button"><svg aria-hidden="true"><use href="#plus"/></svg>添加自己的功课</button>
+              </div>
+            </div><span class="save-status"><span class="status-dot"></span><span id="save-label">自动保存</span></span></div>
+            <div class="counter-area"><div class="counter-orbit"><svg class="progress-ring" viewBox="0 0 300 300" aria-hidden="true"><circle class="ring-track" cx="150" cy="150" r="143"/><circle id="ring-progress" class="ring-fill" cx="150" cy="150" r="143"/></svg><button id="count-button" class="count-button" aria-label="念诵加一"><svg class="counter-lotus" aria-hidden="true"><use href="#lotus"/></svg><span class="counter-caption" id="counter-caption">本次念诵</span><strong id="session-count">0</strong><span class="counter-unit" id="counter-unit">次</span><span class="tap-hint" id="tap-hint">轻触此处 +1</span></button></div><p id="goal-caption" class="goal-caption"></p></div>
+            <div class="counter-actions"><button id="undo-button" class="text-button"><svg><use href="#undo"/></svg>撤销一次</button><span></span><button id="finish-button" class="text-button"><svg><use href="#check"/></svg>结束本次</button></div>
+            <div class="saved-footnote" id="practice-footnote">每次轻触即保存，退出也不会丢失进度</div>
+          </div>
+          <aside class="practice-side"><div class="summary-card"><div class="section-caption"><span>今日 · 当前项目</span><span class="small-symbol">◌</span></div><div class="today-total"><strong id="today-total">0</strong><span id="summary-unit">次</span></div><div class="goal-track"><span id="goal-bar"></span></div><p id="goal-summary"></p><div class="stat-pair"><div><span>累计念诵</span><strong id="all-total">0</strong></div><div><span>记录天数</span><strong id="practice-days">0<small>天</small></strong></div></div></div>
+            <button class="manual-card" data-action="manual"><span class="manual-icon"><svg><use href="#plus"/></svg></span><span><strong>落笔记下今日功课</strong><small>补录今天或过去的念诵</small></span><svg class="chevron"><use href="#arrow"/></svg></button>
+            <div class="weekly-card"><div class="section-caption"><span>近七日 · 当前项目</span><span id="week-unit"></span></div><div id="week-chart" class="week-chart"></div><p>一点一滴，自有积累。</p></div>
+          </aside>
+        </div>
+        <div class="section-heading"><h2>今日记录</h2><button class="text-button" data-page="history">查看全部 <svg><use href="#arrow"/></svg></button></div><div id="today-records" class="record-list"></div>
+      </section>
+      <section id="page-history" class="page" hidden><div class="page-heading"><div><div class="eyebrow">一日一记 · 念念相续</div><h1>朝暮有记，<span>念念相续。</span></h1><p>实时计数与手动补录，都收在这里。</p></div><button class="button primary" data-action="manual"><svg><use href="#plus"/></svg>补录</button></div><div class="history-filters"><label>念诵项目<select id="history-project"><option value="">全部项目</option></select></label><label>选择日期<input id="history-date" type="date"></label><button id="clear-filter" class="text-button">清除筛选</button></div><div id="history-summary" class="history-summary"></div><div id="history-records" class="record-list"></div></section>
+      <section id="page-settings" class="page" hidden><div class="page-heading"><div><div class="eyebrow">随心而行 · 自在修习</div><h1>自己的功课，<span>自己的节奏。</span></h1><p>设置念诵项目，也为日常记录留一份备份。</p></div></div><div class="settings-grid"><div class="settings-card"><div class="section-heading"><h2>念诵项目</h2><button class="text-button" id="add-project"><svg><use href="#plus"/></svg>新增</button></div><div id="project-list"></div><p class="muted small">佛号、经文分别记录。可自定义名称与目标，设为 0 即不设目标。</p></div><div class="settings-card"><h2>记录与备份</h2><p class="muted">数据只保存在当前设备、当前浏览器中，不会自动同步到其他设备。建议定期导出备份。</p><button id="export-button" class="setting-row"><svg><use href="#download"/></svg><span><strong>导出备份</strong><small>保存全部项目和念诵记录</small></span><svg><use href="#arrow"/></svg></button><button id="import-button" class="setting-row"><svg class="rotate-icon"><use href="#download"/></svg><span><strong>恢复备份</strong><small>从之前导出的 JSON 文件恢复</small></span><svg><use href="#arrow"/></svg></button><input type="file" id="import-file" accept="application/json,.json" hidden><p class="muted small" id="backup-label">尚未导出过备份</p></div><div class="settings-card install-card"><svg class="install-lotus"><use href="#lotus"/></svg><h2>把念念放在主屏幕</h2><p>无需注册或登录。使用 iPhone 的 Safari 打开念念网址，再轻点「分享」→「添加到主屏幕」。如有「作为网页 App 打开」选项，请开启。</p><p id="offline-status" class="muted small">正在检查离线可用状态…</p><p class="muted small">你和朋友的记录分别保存在各自设备，不会相互同步。清除浏览器数据或更换网址前，请先导出备份。添加到主屏幕后，检查记录是否齐全；若为空，可从原浏览器导出后恢复。</p></div></div><p class="app-version">念念 · 青境流金 · 每一念，都值得被记下。</p></section>
+      <footer class="page-footer"><span>一念一记，自在随心。</span><span>念念 · 私人念诵手记</span></footer>
+    </main>
+  </div>
+  <nav class="mobile-nav" aria-label="底部导航"><button data-page="count" class="active"><svg><use href="#home"/></svg>念诵</button><button data-page="history"><svg><use href="#book"/></svg>记录</button><button data-page="settings"><svg><use href="#settings"/></svg>我的</button></nav>
+  <dialog id="record-dialog"><form id="record-form"><div class="dialog-heading"><div><span class="eyebrow">一笔一记 · 留存当下</span><h2 id="record-title">补录念诵</h2></div><button type="button" class="close-button" data-close aria-label="关闭">×</button></div><input id="record-id" type="hidden"><label>念诵项目<select id="record-project" required></select></label><div class="form-pair"><label>念诵日期<input id="record-date" type="date" required></label><label id="quantity-label">数量<input id="record-count" type="number" inputmode="numeric" min="1" max="100000000" step="1" required placeholder="例如 108"></label></div><label>备注 <span class="optional">选填</span><textarea id="record-note" maxlength="200" rows="3" placeholder="记下此刻的心情，或本次功课…"></textarea></label><p id="record-error" class="form-error" role="alert"></p><div class="dialog-actions"><button type="button" class="button danger" id="delete-record" hidden>删除记录</button><button type="button" class="button secondary" data-close>取消</button><button class="button primary" type="submit">保存记录</button></div></form></dialog>
+  <dialog id="project-dialog"><form id="project-form"><div class="dialog-heading"><div><span class="eyebrow">日常功课 · 随心而定</span><h2 id="project-title">新增念诵项目</h2></div><button type="button" class="close-button" data-close aria-label="关闭">×</button></div><input id="project-id" type="hidden"><label>功课类型<select id="project-kind"><option value="chant">佛号念诵</option><option value="sutra">经文诵读</option><option value="custom">自定义功课</option></select></label><label>项目名称<input id="project-name" maxlength="40" required placeholder="例如 心经、日常念诵"></label><div class="form-pair"><label>计数单位<select id="project-unit"><option>次</option><option>遍</option><option>声</option></select></label><label>每日目标<input id="project-goal" type="number" inputmode="numeric" min="0" max="100000000" step="1" value="108" required></label></div><p class="muted small" id="unit-help">目标设为 0，则不显示进度目标。</p><p id="project-error" class="form-error" role="alert"></p><div class="dialog-actions"><button type="button" class="button secondary" data-close>取消</button><button type="submit" class="button primary">保存项目</button></div></form></dialog>
+  <dialog id="confirm-dialog"><div class="dialog-heading"><h2 id="confirm-title"></h2><button class="close-button" data-close aria-label="关闭">×</button></div><p id="confirm-message"></p><div class="dialog-actions"><button class="button secondary" data-close>取消</button><button id="confirm-submit" class="button primary">确认</button></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <noscript><div class="alert">请启用 JavaScript 后使用念诵计数和记录功能。</div></noscript>
+  <script type="module" src="./app.js?v=share-1"></script>
+</body>
+</html>

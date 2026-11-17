@@ -1,0 +1,32 @@
+{
+  "id": "./",
+  "name": "念念 · 念诵记录",
+  "short_name": "念念",
+  "description": "一念一记，属于自己的日常念诵手记。",
+  "lang": "zh-CN",
+  "start_url": "./#count",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#082a2e",
+  "theme_color": "#082a2e",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
