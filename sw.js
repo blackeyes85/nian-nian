@@ -1,6 +1,6 @@
-const CACHE='nian-nian-shell-v12-share';
+const CACHE='nian-nian-shell-v13-safe-area';
 // Static hosting redirects /index.html to /. Cache the canonical URL directly.
-const FILES=['./','./styles.css','./light-theme.css?v=opacity-1','./golden-sanctuary.webp','./app.js?v=share-1','./model.js?v=picker-1','./manifest.webmanifest','./icon.svg','./icon-192.png','./icon-512.png'];
+const FILES=['./','./styles.css','./light-theme.css?v=safe-area-1','./golden-sanctuary.webp','./app.js?v=share-1','./model.js?v=picker-1','./manifest.webmanifest','./icon.svg','./icon-192.png','./icon-512.png'];
 const ASSET_URLS=new Set(FILES.map(file=>new URL(file,self.location.href).href));
 const DOCUMENT_PATHS=new Set(['./','./index.html'].map(file=>new URL(file,self.location.href).pathname));
 function appDocument(response){return response.ok&&!response.redirected&&response.headers.get('content-type')?.includes('text/html');}

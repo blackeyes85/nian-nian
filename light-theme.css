@@ -366,3 +366,11 @@ label,.text-button,.button,.setting-row strong {font-size:14px}
 .counter-actions .text-button:active:not(:disabled) {background:#082c2259}
 
 #undo-button {opacity:.8}
+
+/* Keep the full header below the iOS status bar in standalone mode. */
+@media (max-width:850px) {
+  .topbar {height:calc(72px + env(safe-area-inset-top, 0px));padding-top:env(safe-area-inset-top, 0px);flex-shrink:0;}
+}
+@media (max-width:600px) {
+  .topbar {height:calc(67px + env(safe-area-inset-top, 0px));}
+}
